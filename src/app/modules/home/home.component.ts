@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { EmpleadoService } from 'src/app/services/empleado.service';
+import { Empleado } from 'src/app/interface/empleado';
+
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Empleado } from 'src/app/interface/empleado';
 
 @Component({
   selector: 'app-home',
@@ -26,7 +27,8 @@ export class HomeComponent implements OnInit {
     'correo_electronico',
     'fecha_ingreso',
     'nombre_area',
-    'estado'
+    'estado',
+    'accion'
   ];
 
 
@@ -47,4 +49,12 @@ export class HomeComponent implements OnInit {
     console.log(result);
   }
 
+  edit(empleado: Empleado){
+    console.log(empleado);
+  }
+
+
+  delete(empleado: Empleado){
+    console.log(empleado);
+  }
 }
