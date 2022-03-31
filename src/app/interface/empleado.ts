@@ -1,4 +1,5 @@
 export interface Empleado {
+  id: number,
   primer_nombre: String,
   otros_nombres: String,
   primer_apellido: String,
@@ -9,5 +10,7 @@ export interface Empleado {
   correo_electronico: String,
   fecha_ingreso: String,
   nombre_area: String,
-  estado: String
+  estado: String,
+  fecha_registro: String,
+  fecha_edicion: String
 }

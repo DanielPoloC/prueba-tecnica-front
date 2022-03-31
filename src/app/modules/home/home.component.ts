@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   empleados: any;
 
   displayedColumns: string[] = [
+    'id',
     'primer_nombre',
     'otros_nombres',
     'primer_apellido',
@@ -28,6 +29,8 @@ export class HomeComponent implements OnInit {
     'fecha_ingreso',
     'nombre_area',
     'estado',
+    'fecha_registro',
+    'fecha_edicion',
     'accion'
   ];
 
