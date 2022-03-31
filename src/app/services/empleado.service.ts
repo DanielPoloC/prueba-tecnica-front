@@ -21,7 +21,7 @@ export class EmpleadoService {
   }
 
   eliminar(identificacion: any) {
-    return this.http.delete(environment.domain + environment.apis.eliminar + `/${identificacion}`)
+    return this.http.delete(environment.domain + `/${identificacion}` + environment.apis.eliminar)
   }
 
   modificar(body: Empleado) {

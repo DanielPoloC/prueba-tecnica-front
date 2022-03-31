@@ -4,12 +4,12 @@
 
 export const environment = {
   production: false,
-  domain: 'https://prueba-cidenet-back.herokuapp.com',
+  domain: 'https://prueba-cidenet-back.herokuapp.com/v1/empleados',
   apis: {
-    obtener: '/v1/empleados/obtener',
-    crear: '/v1/empleados/crear',
-    modificar: '/v1/empleados/modificar',
-    eliminar: '/v1/empleados/eliminar'
+    obtener: '/obtener',
+    crear: '/crear',
+    modificar: '/modificar',
+    eliminar: '/eliminar'
   }
 };
 
