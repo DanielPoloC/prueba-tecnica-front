@@ -36,25 +36,23 @@ export class HomeComponent implements OnInit {
     private empleadoService: EmpleadoService,
   ) { }
 
-  async ngOnInit() {
+  ngOnInit() {
+    this.getEmployes()
+  }
+
+  getEmployes() {
     this.empleadoService.obtener().subscribe((res: any) => {
-      console.log(res.result);
       this.empleados = new MatTableDataSource<Empleado>(res.result);
       this.empleados.paginator = this.paginator;
     })
   }
 
-  async getEmployes() {
-    const result = await this.empleadoService.obtener()
-    console.log(result);
-  }
-
-  edit(empleado: Empleado){
+  edit(empleado: Empleado) {
     console.log(empleado);
   }
 
 
-  delete(empleado: Empleado){
-    console.log(empleado);
+  delete(empleado: Empleado) {
+    this.empleadoService.eliminar(empleado.numero_identificacion).subscribe((res: any) => { })
   }
 }

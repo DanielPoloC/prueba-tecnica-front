@@ -20,12 +20,12 @@ export class EmpleadoService {
     return this.http.post(environment.domain + environment.apis.crear, body)
   }
 
-  eliminar(body: Empleado) {
-    return this.http.post(environment.domain + environment.apis.eliminar, body)
+  eliminar(identificacion: any) {
+    return this.http.delete(environment.domain + environment.apis.eliminar + `/${identificacion}`)
   }
 
   modificar(body: Empleado) {
-    return this.http.post(environment.domain + environment.apis.modificar, body)
+    return this.http.put(environment.domain + environment.apis.modificar, body)
   }
 
 }
