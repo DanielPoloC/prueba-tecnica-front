@@ -5,6 +5,8 @@ import { Empleado } from 'src/app/interface/empleado';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -15,6 +17,7 @@ export class HomeComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
   empleados: any;
+  accion: any;
 
   displayedColumns: string[] = [
     'id',
@@ -29,14 +32,15 @@ export class HomeComponent implements OnInit {
     'fecha_ingreso',
     'nombre_area',
     'estado',
-    'fecha_registro',
-    'fecha_edicion',
+    // 'fecha_registro',
+    // 'fecha_edicion',
     'accion'
   ];
 
 
   constructor(
     private empleadoService: EmpleadoService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit() {
@@ -54,8 +58,21 @@ export class HomeComponent implements OnInit {
     console.log(empleado);
   }
 
-
   delete(empleado: Empleado) {
     this.empleadoService.eliminar(empleado.numero_identificacion).subscribe((res: any) => { })
+  }
+
+  modalEmpleado(content: any, accion: string) {
+    this.accion = accion
+    this.modalService.open(
+      content,
+      {
+        ariaLabelledBy: 'modal-basic-title',
+        size: 'xl',
+        scrollable: true
+      }
+    ).result.then((result) => {
+      console.log(`result: ${result}`);
+    });
   }
 }

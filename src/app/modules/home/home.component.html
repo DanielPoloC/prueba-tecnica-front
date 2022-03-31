@@ -1,3 +1,5 @@
+<button mat-button color="primary" (click)="modalEmpleado(content, 'nuevo')">Agregar Nuevo Empleado</button>
+
 <table mat-table [dataSource]="empleados">
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef> ID </th>
@@ -71,11 +73,13 @@
 
   <ng-container matColumnDef="accion">
     <th mat-header-cell *matHeaderCellDef>Actions</th>
-    <td mat-cell *matCellDef="let row">
-      <button mat-button (click)="edit(row)">
+    <td mat-cell *matCellDef="let empleado">
+      <button mat-button color="primary" (click)="modalEmpleado(content, 'conocido')">
         <mat-icon>edit</mat-icon>
       </button>
-      <button mat-button (click)="delete(row)">
+      <button mat-button color="warn"
+        [swal]="{ title: '¿Está seguro de que desea eliminar el empleado? \n Sí / No', text: 'Toda la información asociada a ' + empleado.primer_nombre + ' ' + empleado.primer_apellido + ' Desaparecerá', icon: 'question', showCancelButton: true, confirmButtonText: 'Sí', cancelButtonText: 'No'}"
+        (confirm)="delete(empleado)">
         <mat-icon>delete</mat-icon>
       </button>
     </td>
@@ -87,3 +91,25 @@
 
 <mat-paginator [pageSize]="10" showFirstLastButtons aria-label="Select page of periodic elements">
 </mat-paginator>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{accion === 'nuevo' ? ' ' : ''}}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <label for="dateOfBirth">Date of birth</label>
+        <div class="input-group">
+          <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
+          <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+  </div>
+</ng-template>
