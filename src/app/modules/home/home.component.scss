@@ -1,3 +1,6 @@
 table {
   width: 100%;
 }
+.cdk-global-overlay-wrapper, .cdk-overlay-container {
+  z-index: 99999 !important;
+}
