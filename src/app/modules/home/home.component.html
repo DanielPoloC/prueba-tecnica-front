@@ -112,25 +112,25 @@
         <mat-form-field appearance="fill" class="col-12 col-md-6">
           <mat-label>Primer Nombre</mat-label>
           <input matInput formControlName="primer_nombre"
-            (input)="form.get('primer_nombre')?.setValue(form.get('primer_nombre'))" type="text" [maxlength]="20">
+            (input)="form.get('primer_nombre')?.setValue(form.get('primer_nombre')?.value)" type="text" [maxlength]="20">
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="col-12 col-md-6">
           <mat-label>Otros Nombres</mat-label>
           <input matInput formControlName="otros_nombres"
-            (input)="form.get('otros_nombres')?.setValue(form.get('otros_nombres'))" type="text" [maxlength]="50">
+            (input)="form.get('otros_nombres')?.setValue(form.get('otros_nombres')?.value)" type="text" [maxlength]="50">
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="col-12 col-md-6">
           <mat-label>Primer Apellido</mat-label>
           <input matInput formControlName="primer_apellido"
-            (input)="form.get('primer_apellido')?.setValue(form.get('primer_apellido'))" type="text" [maxlength]="20">
+            (input)="form.get('primer_apellido')?.setValue(form.get('primer_apellido')?.value)" type="text" [maxlength]="20">
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="col-12 col-md-6">
           <mat-label>Segundo Apellido</mat-label>
           <input matInput formControlName="segundo_apellido"
-            (input)="form.get('segundo_apellido')?.setValue(form.get('segundo_apellido'))" type="text" [maxlength]="20">
+            (input)="form.get('segundo_apellido')?.setValue(form.get('segundo_apellido')?.value)" type="text" [maxlength]="20">
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="col-12 col-md-6">
@@ -154,25 +154,24 @@
         <mat-form-field appearance="fill" class="col-12 col-md-6">
           <mat-label>Número de Identificación</mat-label>
           <input matInput formControlName="numero_identificacion"
-            (input)="form.get('numero_identificacion')?.setValue(form.get('numero_identificacion'))" type="text"
+            (input)="form.get('numero_identificacion')?.setValue(form.get('numero_identificacion')?.value)" type="text"
             [maxlength]="20">
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="col-12 col-md-6">
           <mat-label>Correo Electrónico</mat-label>
           <input matInput formControlName="correo_electronico"
-            (input)="form.get('correo_electronico')?.setValue(form.get('correo_electronico'))" type="text"
+            (input)="form.get('correo_electronico')?.setValue(form.get('correo_electronico')?.value)" type="text"
             [maxlength]="300" [disabled]="false">
         </mat-form-field>
 
-        <mat-form-field appearance="fill" class="col-12 col-md-6">
+        <!-- <mat-form-field appearance="fill" class="col-12 col-md-6">
           <mat-label>Fecha de Ingreso</mat-label>
-          <input matInput [matDatepicker]="picker2" [formControl]="date"
+          <input matInput [matDatepicker]="fecha_ingreso" formControlName="fecha_ingreso"
             (input)="form.get('fecha_ingreso')?.setValue(form.get('fecha_ingreso'))">
-          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-          <mat-datepicker #picker2></mat-datepicker>
-        </mat-form-field>
-
+          <mat-datepicker-toggle matSuffix [for]="fecha_ingreso"></mat-datepicker-toggle>
+          <mat-datepicker #fecha_ingreso ></mat-datepicker>
+        </mat-form-field> -->
 
         <mat-form-field appearance="fill" class="col-12 col-md-6">
           <mat-label>Área</mat-label>
