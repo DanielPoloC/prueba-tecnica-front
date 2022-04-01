@@ -111,7 +111,7 @@
 
         <mat-form-field appearance="fill" class="col-12 col-md-6">
           <mat-label>Primer Nombre</mat-label>
-          <input matInput formControlName="primer_nombre"
+          <input matInput formControlName="primer_nombre" (change)="setCorreo()"
             (input)="form.get('primer_nombre')?.setValue(form.get('primer_nombre')?.value)" type="text" [maxlength]="20">
         </mat-form-field>
 
@@ -123,7 +123,7 @@
 
         <mat-form-field appearance="fill" class="col-12 col-md-6">
           <mat-label>Primer Apellido</mat-label>
-          <input matInput formControlName="primer_apellido"
+          <input matInput formControlName="primer_apellido" (change)="setCorreo()"
             (input)="form.get('primer_apellido')?.setValue(form.get('primer_apellido')?.value)" type="text" [maxlength]="20">
         </mat-form-field>
 
@@ -160,18 +160,18 @@
 
         <mat-form-field appearance="fill" class="col-12 col-md-6">
           <mat-label>Correo Electrónico</mat-label>
-          <input matInput formControlName="correo_electronico"
+          <input matInput formControlName="correo_electronico" readonly
             (input)="form.get('correo_electronico')?.setValue(form.get('correo_electronico')?.value)" type="text"
-            [maxlength]="300" [disabled]="false">
+            [maxlength]="300" [disabled]="true">
         </mat-form-field>
 
-        <!-- <mat-form-field appearance="fill" class="col-12 col-md-6">
+        <mat-form-field appearance="fill" class="col-12 col-md-6">
           <mat-label>Fecha de Ingreso</mat-label>
-          <input matInput [matDatepicker]="fecha_ingreso" formControlName="fecha_ingreso"
+          <input matInput [matDatepicker]="picker2" [formControl]="date" (dateChange)="selectDate($event)"
             (input)="form.get('fecha_ingreso')?.setValue(form.get('fecha_ingreso'))">
-          <mat-datepicker-toggle matSuffix [for]="fecha_ingreso"></mat-datepicker-toggle>
-          <mat-datepicker #fecha_ingreso ></mat-datepicker>
-        </mat-form-field> -->
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
 
         <mat-form-field appearance="fill" class="col-12 col-md-6">
           <mat-label>Área</mat-label>
@@ -189,7 +189,7 @@
 
         <mat-form-field appearance="fill" class="col-12 col-md-6">
           <mat-label>Estado</mat-label>
-          <mat-select formControlName="estado">
+          <mat-select formControlName="estado" [disabled]="accion === 'Nuevo'">
             <mat-option [value]="'Activo'">Activo</mat-option>
             <mat-option [value]="'Inactivo'">Inactivo</mat-option>
           </mat-select>

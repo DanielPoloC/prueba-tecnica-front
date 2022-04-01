@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-home',
@@ -50,6 +51,7 @@ export class HomeComponent implements OnInit {
     private empleadoService: EmpleadoService,
     private modalService: NgbModal,
     private formBuilder: FormBuilder,
+    private _snackBar: MatSnackBar
   ) {
     this.form = this.formBuilder.group({
       primer_nombre: ["", [Validators.required, Validators.maxLength(20)]],
@@ -62,7 +64,7 @@ export class HomeComponent implements OnInit {
       correo_electronico: ["", [Validators.required, Validators.maxLength(300), Validators.email]],
       fecha_ingreso: ["", [Validators.maxLength(255)]],
       nombre_area: ["", [Validators.required, Validators.maxLength(255)]],
-      estado: ["", [Validators.required, Validators.maxLength(255)]],
+      estado: ["", [Validators.maxLength(255)]],
     })
 
     setInterval(() => {
@@ -81,8 +83,19 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  setCorreo(){
+    const correo = this.form.get("primer_nombre")?.value + this.form.get("primer_apellido")?.value + '1' + '@cidenet.com.co'
+    this.form.get("correo_electronico")?.setValue(this.formatDate(correo));
+  }
+
   crear() {
-    console.log("FINALIZAR");
+    if (this.form.valid) {
+      this.empleadoService.crear(this.form.value).subscribe((res: any) => {
+        this.openSnackBar(res.result, 'Cerrar')
+        this.modalService.dismissAll()
+        this.getEmployes()
+      })
+    }
   }
 
   modificar() {
@@ -90,14 +103,25 @@ export class HomeComponent implements OnInit {
   }
 
   delete(empleado: Empleado) {
-    this.empleadoService.eliminar(empleado.numero_identificacion).subscribe((res: any) => { })
+    this.empleadoService.eliminar(empleado.numero_identificacion).subscribe((res: any) => {
+      this.openSnackBar(res.result, 'Cerrar')
+      this.getEmployes()
+    })
   }
 
   open(content: any, accion: any, empleado?: any) {
     this.accion = accion
     this.resetForm(empleado)
 
-    this.date = new FormControl(new Date(empleado.fecha_ingreso))
+    if (accion != 'Nuevo' && empleado.fecha_ingreso) {
+      const split = empleado.fecha_ingreso.split('/')
+      const fecha = split[1] + '/' + split[0] + '/' + split[2]
+      this.date = new FormControl(new Date(fecha))
+    }
+
+    if(accion === 'Nuevo'){
+      this.form.get("estado")?.setValue("Activo");
+    }
 
     this.modalService.open(
       content,
@@ -111,6 +135,24 @@ export class HomeComponent implements OnInit {
     }, (reason) => {
       console.log(reason);
     });
+  }
+
+  selectDate(date: any) {
+    this.form.get("fecha_ingreso")?.setValue(this.formatDate(date.value));
+  }
+
+  formatDate(date: any) {
+    var d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2)
+      month = '0' + month;
+    if (day.length < 2)
+      day = '0' + day;
+
+    return [day, month, year].join('/');
   }
 
   resetForm(selectedEmpleado: Empleado | undefined = undefined) {
@@ -134,5 +176,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
+  }
 }
