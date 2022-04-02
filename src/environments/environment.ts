@@ -9,7 +9,8 @@ export const environment = {
     obtener: '/obtener',
     crear: '/crear',
     modificar: '/modificar',
-    eliminar: '/eliminar'
+    eliminar: '/eliminar',
+    correo: '/correo'
   }
 };
 

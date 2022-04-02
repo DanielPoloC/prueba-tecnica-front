@@ -84,8 +84,13 @@ export class HomeComponent implements OnInit {
   }
 
   setCorreo(){
-    const correo = this.form.get("primer_nombre")?.value + this.form.get("primer_apellido")?.value + '1' + '@cidenet.com.co'
-    this.form.get("correo_electronico")?.setValue(this.formatDate(correo));
+    const nombre = this.form.get("primer_nombre")?.value
+    const apellido = this.form.get("primer_apellido")?.value
+    if (nombre && apellido) {
+      this.empleadoService.correo(nombre, apellido).subscribe((res: any) => {
+        this.form.get("correo_electronico")?.setValue(res.result);
+      })
+    }
   }
 
   crear() {

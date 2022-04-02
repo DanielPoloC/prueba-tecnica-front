@@ -28,4 +28,7 @@ export class EmpleadoService {
     return this.http.put(environment.domain + environment.apis.modificar, body)
   }
 
+  correo(nombre: string, apellido: string) {
+    return this.http.get(environment.domain + `/${nombre}/${apellido}` + environment.apis.correo)
+  }
 }
