@@ -114,6 +114,11 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  filtro(event: any){
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.empleados.filter = filterValue.trim().toLowerCase();
+    }
+
   open(content: any, accion: any, empleado?: any) {
     this.accion = accion
     this.resetForm(empleado)

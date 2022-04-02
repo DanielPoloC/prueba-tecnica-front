@@ -1,136 +1,220 @@
-<button mat-button color="primary" (click)="open(content, 'Nuevo')">Agregar Nuevo Empleado</button>
+<button mat-button color="primary" (click)="open(content, 'Nuevo')">
+  Agregar Nuevo Empleado
+</button>
+
+<table class="example-full-width" cellspacing="0">
+  <tr>
+    <td>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Filtro</mat-label>
+        <input matInput placeholder="Buscar..." (keyup)="filtro($event)"/>
+      </mat-form-field>
+    </td>
+  </tr>
+</table>
 
 <table mat-table [dataSource]="empleados">
   <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef> ID </th>
-    <td mat-cell *matCellDef="let empleado"> {{empleado.id}} </td>
+    <th mat-header-cell *matHeaderCellDef>ID</th>
+    <td mat-cell *matCellDef="let empleado">{{ empleado.id }}</td>
   </ng-container>
 
   <ng-container matColumnDef="primer_nombre">
-    <th mat-header-cell *matHeaderCellDef> Primer Nombre </th>
-    <td mat-cell *matCellDef="let empleado"> {{empleado.primer_nombre}} </td>
+    <th mat-header-cell *matHeaderCellDef>Primer Nombre</th>
+    <td mat-cell *matCellDef="let empleado">{{ empleado.primer_nombre }}</td>
   </ng-container>
 
   <ng-container matColumnDef="otros_nombres">
-    <th mat-header-cell *matHeaderCellDef> Otros Nombres </th>
-    <td mat-cell *matCellDef="let empleado"> {{empleado.otros_nombres}} </td>
+    <th mat-header-cell *matHeaderCellDef>Otros Nombres</th>
+    <td mat-cell *matCellDef="let empleado">{{ empleado.otros_nombres }}</td>
   </ng-container>
 
   <ng-container matColumnDef="primer_apellido">
-    <th mat-header-cell *matHeaderCellDef> Primer Apellido </th>
-    <td mat-cell *matCellDef="let empleado"> {{empleado.primer_apellido}} </td>
+    <th mat-header-cell *matHeaderCellDef>Primer Apellido</th>
+    <td mat-cell *matCellDef="let empleado">{{ empleado.primer_apellido }}</td>
   </ng-container>
 
   <ng-container matColumnDef="segundo_apellido">
-    <th mat-header-cell *matHeaderCellDef> Segundo Apellido </th>
-    <td mat-cell *matCellDef="let empleado"> {{empleado.segundo_apellido}} </td>
+    <th mat-header-cell *matHeaderCellDef>Segundo Apellido</th>
+    <td mat-cell *matCellDef="let empleado">{{ empleado.segundo_apellido }}</td>
   </ng-container>
 
   <ng-container matColumnDef="pais_empleo">
-    <th mat-header-cell *matHeaderCellDef> País Empleo </th>
-    <td mat-cell *matCellDef="let empleado"> {{empleado.pais_empleo}} </td>
+    <th mat-header-cell *matHeaderCellDef>País Empleo</th>
+    <td mat-cell *matCellDef="let empleado">{{ empleado.pais_empleo }}</td>
   </ng-container>
 
   <ng-container matColumnDef="tipo_identificacion">
-    <th mat-header-cell *matHeaderCellDef> Tipo Identificación </th>
-    <td mat-cell *matCellDef="let empleado"> {{empleado.tipo_identificacion}} </td>
+    <th mat-header-cell *matHeaderCellDef>Tipo Identificación</th>
+    <td mat-cell *matCellDef="let empleado">
+      {{ empleado.tipo_identificacion }}
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="numero_identificacion">
-    <th mat-header-cell *matHeaderCellDef> Numero Identificación </th>
-    <td mat-cell *matCellDef="let empleado"> {{empleado.numero_identificacion}} </td>
+    <th mat-header-cell *matHeaderCellDef>Numero Identificación</th>
+    <td mat-cell *matCellDef="let empleado">
+      {{ empleado.numero_identificacion }}
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="correo_electronico">
-    <th mat-header-cell *matHeaderCellDef> Correo Electrónico </th>
-    <td mat-cell *matCellDef="let empleado"> {{empleado.correo_electronico}} </td>
+    <th mat-header-cell *matHeaderCellDef>Correo Electrónico</th>
+    <td mat-cell *matCellDef="let empleado">
+      {{ empleado.correo_electronico }}
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="fecha_ingreso">
-    <th mat-header-cell *matHeaderCellDef> Fecha Ingreso </th>
-    <td mat-cell *matCellDef="let empleado"> {{empleado.fecha_ingreso}} </td>
+    <th mat-header-cell *matHeaderCellDef>Fecha Ingreso</th>
+    <td mat-cell *matCellDef="let empleado">{{ empleado.fecha_ingreso }}</td>
   </ng-container>
 
   <ng-container matColumnDef="nombre_area">
-    <th mat-header-cell *matHeaderCellDef> Nombre Area </th>
-    <td mat-cell *matCellDef="let empleado"> {{empleado.nombre_area}} </td>
+    <th mat-header-cell *matHeaderCellDef>Nombre Area</th>
+    <td mat-cell *matCellDef="let empleado">{{ empleado.nombre_area }}</td>
   </ng-container>
 
   <ng-container matColumnDef="estado">
-    <th mat-header-cell *matHeaderCellDef> Estado </th>
-    <td mat-cell *matCellDef="let empleado"> {{empleado.estado}} </td>
+    <th mat-header-cell *matHeaderCellDef>Estado</th>
+    <td mat-cell *matCellDef="let empleado">{{ empleado.estado }}</td>
   </ng-container>
 
   <ng-container matColumnDef="fecha_registro">
-    <th mat-header-cell *matHeaderCellDef> Fecha Registro </th>
-    <td mat-cell *matCellDef="let empleado"> {{empleado.fecha_registro}} </td>
+    <th mat-header-cell *matHeaderCellDef>Fecha Registro</th>
+    <td mat-cell *matCellDef="let empleado">{{ empleado.fecha_registro }}</td>
   </ng-container>
 
   <ng-container matColumnDef="fecha_edicion">
-    <th mat-header-cell *matHeaderCellDef> Fecha Edición </th>
-    <td mat-cell *matCellDef="let empleado"> {{empleado.fecha_edicion}} </td>
+    <th mat-header-cell *matHeaderCellDef>Fecha Edición</th>
+    <td mat-cell *matCellDef="let empleado">{{ empleado.fecha_edicion }}</td>
   </ng-container>
 
   <ng-container matColumnDef="accion">
     <th mat-header-cell *matHeaderCellDef>Actions</th>
     <td mat-cell *matCellDef="let empleado">
-      <button mat-button color="primary" (click)="open(content, 'Editar', empleado)">
+      <button
+        mat-button
+        color="primary"
+        (click)="open(content, 'Editar', empleado)"
+      >
         <mat-icon>edit</mat-icon>
       </button>
-      <button mat-button color="warn"
-        [swal]="{ title: '¿Está seguro de que desea eliminar el empleado? \n Sí / No', text: 'Toda la información asociada a ' + empleado.primer_nombre + ' ' + empleado.primer_apellido + ' Desaparecerá', icon: 'question', showCancelButton: true, confirmButtonText: 'Sí', cancelButtonText: 'No'}"
-        (confirm)="delete(empleado)">
+      <button
+        mat-button
+        color="warn"
+        [swal]="{
+          title: '¿Está seguro de que desea eliminar el empleado? \n Sí / No',
+          text:
+            'Toda la información asociada a ' +
+            empleado.primer_nombre +
+            ' ' +
+            empleado.primer_apellido +
+            ' Desaparecerá',
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonText: 'Sí',
+          cancelButtonText: 'No'
+        }"
+        (confirm)="delete(empleado)"
+      >
         <mat-icon>delete</mat-icon>
       </button>
     </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
 
-<mat-paginator [pageSize]="10" showFirstLastButtons aria-label="Select page of periodic elements"></mat-paginator>
+<mat-paginator
+  [pageSize]="10"
+  showFirstLastButtons
+  aria-label="Select page of periodic elements"
+></mat-paginator>
 
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h2 class="modal-title" id="modal-basic-title">{{accion}} Empleado</h2>
-    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+    <h2 class="modal-title" id="modal-basic-title">{{ accion }} Empleado</h2>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss()"
+    ></button>
   </div>
   <div class="modal-body">
     <form class="card mt-3" [formGroup]="form">
-
-      <div class="card-header d-flex align-items-center justify-content-between flex-wrap" style="gap: 1rem;">
+      <div
+        class="card-header d-flex align-items-center justify-content-between flex-wrap"
+        style="gap: 1rem"
+      >
         <div class="m-1 d-flex align-items-center flex-column flex-sm-row">
-          <small class="title-description">
-            Campos con * Obligatorios
-          </small>
+          <small class="title-description"> Campos con * Obligatorios </small>
         </div>
       </div>
 
       <div class="card-body row">
-
         <mat-form-field appearance="fill" class="col-12 col-md-6">
           <mat-label>Primer Nombre</mat-label>
-          <input matInput formControlName="primer_nombre" (change)="setCorreo()"
-            (input)="form.get('primer_nombre')?.setValue(form.get('primer_nombre')?.value)" type="text" [maxlength]="20">
+          <input
+            matInput
+            formControlName="primer_nombre"
+            (change)="setCorreo()"
+            (input)="
+              form
+                .get('primer_nombre')
+                ?.setValue(form.get('primer_nombre')?.value)
+            "
+            type="text"
+            [maxlength]="20"
+          />
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="col-12 col-md-6">
           <mat-label>Otros Nombres</mat-label>
-          <input matInput formControlName="otros_nombres"
-            (input)="form.get('otros_nombres')?.setValue(form.get('otros_nombres')?.value)" type="text" [maxlength]="50">
+          <input
+            matInput
+            formControlName="otros_nombres"
+            (input)="
+              form
+                .get('otros_nombres')
+                ?.setValue(form.get('otros_nombres')?.value)
+            "
+            type="text"
+            [maxlength]="50"
+          />
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="col-12 col-md-6">
           <mat-label>Primer Apellido</mat-label>
-          <input matInput formControlName="primer_apellido" (change)="setCorreo()"
-            (input)="form.get('primer_apellido')?.setValue(form.get('primer_apellido')?.value)" type="text" [maxlength]="20">
+          <input
+            matInput
+            formControlName="primer_apellido"
+            (change)="setCorreo()"
+            (input)="
+              form
+                .get('primer_apellido')
+                ?.setValue(form.get('primer_apellido')?.value)
+            "
+            type="text"
+            [maxlength]="20"
+          />
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="col-12 col-md-6">
           <mat-label>Segundo Apellido</mat-label>
-          <input matInput formControlName="segundo_apellido"
-            (input)="form.get('segundo_apellido')?.setValue(form.get('segundo_apellido')?.value)" type="text" [maxlength]="20">
+          <input
+            matInput
+            formControlName="segundo_apellido"
+            (input)="
+              form
+                .get('segundo_apellido')
+                ?.setValue(form.get('segundo_apellido')?.value)
+            "
+            type="text"
+            [maxlength]="20"
+          />
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="col-12 col-md-6">
@@ -144,32 +228,66 @@
         <mat-form-field appearance="fill" class="col-12 col-md-6">
           <mat-label>Tipo de Identificación</mat-label>
           <mat-select formControlName="tipo_identificacion">
-            <mat-option [value]="'Cédula de Ciudadanía'">Cédula de Ciudadanía</mat-option>
-            <mat-option [value]="'Cédula de Extranjería'">Cédula de Extranjería</mat-option>
+            <mat-option [value]="'Cédula de Ciudadanía'"
+              >Cédula de Ciudadanía</mat-option
+            >
+            <mat-option [value]="'Cédula de Extranjería'"
+              >Cédula de Extranjería</mat-option
+            >
             <mat-option [value]="'Pasaporte'">Pasaporte</mat-option>
-            <mat-option [value]="'Permiso Especial'">Permiso Especial</mat-option>
+            <mat-option [value]="'Permiso Especial'"
+              >Permiso Especial</mat-option
+            >
           </mat-select>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="col-12 col-md-6">
           <mat-label>Número de Identificación</mat-label>
-          <input matInput formControlName="numero_identificacion"
-            (input)="form.get('numero_identificacion')?.setValue(form.get('numero_identificacion')?.value)" type="text"
-            [maxlength]="20">
+          <input
+            matInput
+            formControlName="numero_identificacion"
+            (input)="
+              form
+                .get('numero_identificacion')
+                ?.setValue(form.get('numero_identificacion')?.value)
+            "
+            type="text"
+            [maxlength]="20"
+          />
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="col-12 col-md-6">
           <mat-label>Correo Electrónico</mat-label>
-          <input matInput formControlName="correo_electronico" readonly
-            (input)="form.get('correo_electronico')?.setValue(form.get('correo_electronico')?.value)" type="text"
-            [maxlength]="300" [disabled]="true">
+          <input
+            matInput
+            formControlName="correo_electronico"
+            readonly
+            (input)="
+              form
+                .get('correo_electronico')
+                ?.setValue(form.get('correo_electronico')?.value)
+            "
+            type="text"
+            [maxlength]="300"
+            [disabled]="true"
+          />
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="col-12 col-md-6">
           <mat-label>Fecha de Ingreso</mat-label>
-          <input matInput [matDatepicker]="picker2" [formControl]="date" (dateChange)="selectDate($event)"
-            (input)="form.get('fecha_ingreso')?.setValue(form.get('fecha_ingreso'))">
-          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <input
+            matInput
+            [matDatepicker]="picker2"
+            [formControl]="date"
+            (dateChange)="selectDate($event)"
+            (input)="
+              form.get('fecha_ingreso')?.setValue(form.get('fecha_ingreso'))
+            "
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker2"
+          ></mat-datepicker-toggle>
           <mat-datepicker #picker2></mat-datepicker>
         </mat-form-field>
 
@@ -182,7 +300,9 @@
             <mat-option [value]="'Infraestructura'">Infraestructura</mat-option>
             <mat-option [value]="'Operación'">Operación</mat-option>
             <mat-option [value]="'Talento Humano'">Talento Humano</mat-option>
-            <mat-option [value]="'Servicios Varios'">Servicios Varios</mat-option>
+            <mat-option [value]="'Servicios Varios'"
+              >Servicios Varios</mat-option
+            >
             <mat-option [value]="'Otra'">Otra</mat-option>
           </mat-select>
         </mat-form-field>
@@ -196,18 +316,44 @@
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="col-12 col-md-6">
-          <mat-label>{{accion === 'Nuevo' ? 'Fecha y Hora de Registro: ' : 'Fecha y Hora de Edición: '}}</mat-label>
-          <input matInput disabled="true" value="{{ time | date:'dd/MM/YYY hh:mm:ss'}}">
+          <mat-label>{{
+            accion === "Nuevo"
+              ? "Fecha y Hora de Registro: "
+              : "Fecha y Hora de Edición: "
+          }}</mat-label>
+          <input
+            matInput
+            disabled="true"
+            value="{{ time | date: 'dd/MM/YYY hh:mm:ss' }}"
+          />
         </mat-form-field>
       </div>
 
-      <div class="card-footer d-flex align-items-center justify-content-end gap-2">
-        <button *ngIf="accion==='Nuevo'" mat-button color="primary" (click)="crear()">Crear</button>
-        <button *ngIf="accion!='Nuevo'" mat-button color="primary" (click)="modificar()">Modificar</button>
+      <div
+        class="card-footer d-flex align-items-center justify-content-end gap-2"
+      >
+        <button
+          *ngIf="accion === 'Nuevo'"
+          mat-button
+          color="primary"
+          (click)="crear()"
+        >
+          Crear
+        </button>
+        <button
+          *ngIf="accion != 'Nuevo'"
+          mat-button
+          color="primary"
+          (click)="modificar()"
+        >
+          Modificar
+        </button>
       </div>
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close()">Cerrar</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close()">
+      Cerrar
+    </button>
   </div>
 </ng-template>
